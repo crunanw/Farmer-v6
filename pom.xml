@@ -95,9 +95,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.Geik-xyz</groupId>
+            <groupId>com.github.CraftLuna</groupId>
             <artifactId>GLib</artifactId>
-            <version>db36065e77</version>
+            <version>f271e1672a</version>
         </dependency>
         <!-- apache commons -->
         <dependency>
