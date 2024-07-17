@@ -82,7 +82,7 @@ public class MainGui {
                         // Look inventory of farmer
                         if (player.hasPermission("farmer.admin") ||
                                 farmer.getUsers().stream().anyMatch(user -> (
-                                !user.getPerm().equals(FarmerPerm.COOP)
+                                !user.getPerm().equals(FarmerPerm.MEMBER)
                                         && user.getName().equalsIgnoreCase(player.getName())))) {
                             // XMaterial check for old version
                             ItemStack cursorItem;
@@ -107,6 +107,7 @@ public class MainGui {
                                 // Calls FarmerItemSellEvent
                                 FarmerItemSellEvent itemSellEvent = new FarmerItemSellEvent(farmer, slotItem, player);
                                 Bukkit.getPluginManager().callEvent(itemSellEvent);
+                                gui.close(true);
                             }
                             // Withdraw item
                             else {
@@ -153,8 +154,9 @@ public class MainGui {
                                     player.getInventory().addItem(returnItem);
                                 }
                                 slotItem.negateAmount(count);
+                                gui.close(true);
                             }
-                            gui.draw();
+                            gui.close(true);
                         }
                         return true;
                     })));

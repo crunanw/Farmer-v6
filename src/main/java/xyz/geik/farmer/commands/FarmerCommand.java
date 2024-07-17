@@ -214,29 +214,29 @@ public class FarmerCommand extends BaseCommand {
     @Permission("farmer.admin")
     @SubCommand(value = "open", alias = {"aç"})
     public void openCommand(@NotNull CommandSender sender, String target) {
-        Player player = Bukkit.getPlayerExact(target);
-        if (player == null) {
+        Player targetPlayer = Bukkit.getPlayerExact(target);
+        if (targetPlayer == null) {
             ChatUtils.sendMessage(sender, Main.getLangFile().getMessages().getTargetPlayerNotAvailable());
             return;
         }
-        if (!player.isOnline()) {
+        if (!targetPlayer.isOnline()) {
             ChatUtils.sendMessage(sender, Main.getLangFile().getMessages().getPlayerNotOnline());
             return;
         }
         // Check world is suitable for farmer
-        if (!Main.getConfigFile().getSettings().getAllowedWorlds().contains(player.getWorld().getName())) {
-            ChatUtils.sendMessage(player, Main.getLangFile().getMessages().getWrongWorld());
+        if (!Main.getConfigFile().getSettings().getAllowedWorlds().contains(targetPlayer.getWorld().getName())) {
+            ChatUtils.sendMessage(targetPlayer, Main.getLangFile().getMessages().getWrongWorld());
             return;
         }
 
-        String regionID = getRegionID(player);
+        String regionID = getRegionID(targetPlayer);
         if (regionID == null)
             ChatUtils.sendMessage(sender, Main.getLangFile().getMessages().getNoRegion());
 
         if (!FarmerManager.getFarmers().containsKey(regionID))
             ChatUtils.sendMessage(sender, Main.getLangFile().getMessages().getNoFarmer());
         else {
-            MainGui.showGui(player, FarmerManager.getFarmers().get(regionID));
+            MainGui.showGui((Player) sender, FarmerManager.getFarmers().get(regionID));
         }
     }
 

@@ -72,6 +72,7 @@ public class GeyserGui {
                         player.getInventory().addItem(returnItem);
                     }
                     slotItem.negateAmount(count);
+                    gui.close(true);
                     return true;
                 }
         ));
@@ -114,6 +115,7 @@ public class GeyserGui {
                         player.getInventory().addItem(returnItem);
                     }
                     slotItem.negateAmount(count);
+                    gui.close(true);
                     return true;
                 }
         ));
@@ -130,6 +132,7 @@ public class GeyserGui {
                     // Calls FarmerItemSellEvent
                     FarmerItemSellEvent itemSellEvent = new FarmerItemSellEvent(farmer, slotItem, player);
                     Bukkit.getPluginManager().callEvent(itemSellEvent);
+                    gui.close(true);
                     return true;
                 }
         ));
