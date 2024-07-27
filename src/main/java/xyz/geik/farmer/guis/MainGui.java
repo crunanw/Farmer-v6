@@ -90,7 +90,7 @@ public class MainGui {
                                 cursorItem = click.getRawEvent().getInventory().getItem(click.getSlot());
                             }
                             catch (Exception ignored) {cursorItem = null;}
-                            assert cursorItem != null;
+                            if (cursorItem == null) return true;
                             XMaterial material = XMaterial.matchXMaterial(cursorItem);
                             FarmerItem slotItem = farmer.getInv().getStockedItem(material);
                             // If player is bedrock player go to geyser gui
